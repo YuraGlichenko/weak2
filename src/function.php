@@ -8,7 +8,9 @@ function task1($xmlFile)
         }
     }
 
-    if (!is_string($xmlFile)) die('строка не указана!');
+    if (!is_string($xmlFile)) {
+        die('строка не указана!');
+    }
     $fileData = file_get_contents($xmlFile);
     $xml = new SimpleXMLElement($fileData);
     $infoOrder = $xml->attributes();
@@ -85,6 +87,7 @@ function task2()
 
 function task3()
 {
+    //param $iterable - array length returned function;
     function getRandomArray($iterable, &$array)
     {
         $numb = random_int(1, 100);
@@ -119,7 +122,6 @@ function task3()
 
 function task4($file)
 {
-
     $getFile = file_get_contents($file);
     $json = json_decode($getFile, 1);
     function search_key($searchKey, array $arr, array &$result)
@@ -135,7 +137,8 @@ function task4($file)
     }
     $res = [];
     search_key('title', $json, $res);
-    foreach ($res as $k => $v) {
+    echo '<pre>',$json['query']['pages']['15580374']['pageid'], '</pre>';
+    foreach ($res as $v) {
         echo $v.PHP_EOL;
     }
 }
